@@ -3,11 +3,15 @@ exports.up = function(knex, Promise) {
 
   todo.push(knex.schema.createTable('namespace', function(t){
     t.increments('id').primary();
+
+    t.text('label');
   }));
 
   todo.push(knex.schema.createTable('exams', function(t){
     t.increments('id').primary();
     t.integer('namespace_id');
+
+    t.text('title');
   }));
 
   todo.push(knex.schema.createTable('exams_questions', function(t){
@@ -15,8 +19,8 @@ exports.up = function(knex, Promise) {
     t.integer('exam_id');
     t.integer('question_id');
 
-    t.text('question_sort_order');
-    t.text('choice_sort_order');
+    t.text('question_order');
+    t.text('choice_order'); // questions are reused with a different order
   }));
 
   todo.push(knex.schema.createTable('questions', function(t){
@@ -26,18 +30,12 @@ exports.up = function(knex, Promise) {
     t.integer('text_id');
   }));
 
-  todo.push(knex.schema.createTable('choices_questions', function(t){
-    t.increments('id').primary();
-    t.integer('choice_id');
-    t.integer('question_id');
-
-    t.text('sort_order');
-  }));
-
   todo.push(knex.schema.createTable('choices', function(t){
     t.increments('id').primary();
+    t.integer('question_id');
 
     t.integer('text_id');
+    t.boolean('is_correct');
   }));
 
   todo.push(knex.schema.createTable('texts', function(t){
