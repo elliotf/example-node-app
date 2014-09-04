@@ -1,8 +1,6 @@
 var base = require("./base");
 
-var Namespace = base.extend({
+module.exports = base.extend({
   tableName: 'namespaces'
 }, {
 });
-
-module.exports = base.bookshelf.model('Namespace', Namespace);
