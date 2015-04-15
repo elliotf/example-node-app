@@ -1,7 +1,9 @@
 example-node-app
 ================
 
-A snapshot of how I develop node applications
+[![Build Status](https://travis-ci.org/elliotf/example-node-app.svg?branch=master)](https://travis-ci.org/elliotf/example-node-app)
+
+A snapshot of how I develop node applications.
 
 To install and run the tests:
 
