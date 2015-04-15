@@ -1,10 +1,12 @@
 'use strict';
 
-var _      = require('lodash');
-var async  = require('async');
-var chai   = require('chai');
-var config = require('config');
-var models = require('../models');
+var _         = require('lodash');
+var async     = require('async');
+var chai      = require('chai');
+var cheerio   = require('cheerio');
+var config    = require('config');
+var supertest = require('supertest');
+var models    = require('../models');
 
 chai.config.includeStack = true;
 
@@ -14,11 +16,21 @@ require('mocha-sinon'); // provide `this.sinon` sandbox in tests
 
 module.exports.expect = chai.expect;
 
+module.exports.$ = function(html) {
+  return cheerio.load(html);
+};
+
 before(function(done) {
   // migrate the DB once for each test suite
   models.Base.db.migrate
     .latest(config.database)
     .exec(done);
+});
+
+beforeEach(function() {
+  this.agent = function(app) {
+    return supertest.agent(app);
+  };
 });
 
 beforeEach(function(done) {

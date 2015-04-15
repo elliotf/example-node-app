@@ -1,3 +1,5 @@
+'use strict';
+
 var models = require('../models');
 var helper = require('./helper')
 var expect = helper.expect;
