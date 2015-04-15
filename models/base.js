@@ -9,6 +9,7 @@ var bookshelf = Bookshelf.initialize(db);
 bookshelf.plugin('registry');
 
 var Base = bookshelf.Model.extend({
+  hasTimestamps: true
   // event hooks, etc.
 }, {
   // things like .findOrCreate, .create, etc.

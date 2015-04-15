@@ -4,10 +4,15 @@ var _      = require('lodash');
 var async  = require('async');
 var chai   = require('chai');
 var config = require('config');
-
 var models = require('../models');
 
 chai.config.includeStack = true;
+
+chai.use(require('dirty-chai')); // avoid property assertions
+chai.use(require('sinon-chai'));
+require('mocha-sinon'); // provide `this.sinon` sandbox in tests
+
+module.exports.expect = chai.expect;
 
 before(function(done) {
   // migrate the DB once for each test suite
