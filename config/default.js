@@ -2,7 +2,7 @@ module.exports = {
   database: {
     client: 'sqlite3',
     connection: {
-      filename: "db.sqlite"
+      filename: "dev.sqlitedb"
     }
   }
 };
